@@ -1,4 +1,4 @@
-﻿var level1 = {
+﻿var gameState = {
     create: function create() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#000000';
@@ -23,42 +23,18 @@
 
         game.camera.follow(player);
 
-        //test trigger
-        test = game.add.sprite(1312, 336, 'droid');
-        test.enableBody = true;
-        game.physics.enable(test, Phaser.Physics.ARCADE);
-        test.body.collideWorldBounds = true;
-        test.body.setSize(20, 32, 5, 16);
-
         //Controls movement
-        upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+        //upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
         var facing = 'left';
-        // create player healthbar
-        var barConfig = {
-            width: 100,
-            height: 20,
-            x: 100,
-            y: 20,
-            bg: {
-                color: '#FF0000'
-            },
-            bar: {
-                color: '#00FF00'
-            },
-            animationDuration: 200,
-            flipped: false
-        }
-        this.myHealthBar = new HealthBar(this.game, barConfig);
-        this.myHealthBar.setFixedToCamera(true);
-        this.currHealth = 100;
     },
 
-    update: function update() {
-
+    update: function update()
+    {
+        
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
         player.body.velocity.x = 0;
@@ -94,28 +70,8 @@
             player.body.velocity.y = -200;
             jumpTimer = game.time.now + 750;
         }
-        this.playerHealth();
-
-        game.physics.arcade.collide(player, test, playerReachBottom, null, this);
-
         //if enemy reached the end of level, go to next state
-        //game.state.start("level2");
-        //game.state.start("gameoverState");
     },
-
-    playerHealth: function playerHealth()
-    {
-
-        if (upKey.isDown) {
-            this.currHealth -= 1;
-            this.myHealthBar.setPercent(this.currHealth);
-        }
-    },
-
-    playerReachBottom: function playerReachBottom(_player, _test) {
-        _test.kill();
-        game.state.start('level2');
-    }
 
 
     //create: function create() { }
