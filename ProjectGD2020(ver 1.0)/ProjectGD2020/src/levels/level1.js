@@ -24,12 +24,30 @@
         game.camera.follow(player);
 
         //Controls movement
-        //upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+        upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
         var facing = 'left';
+        // create player healthbar
+        var barConfig = {
+            width: 100,
+            height: 20,
+            x: 100,
+            y: 20,
+            bg: {
+                color: '#FF0000'
+            },
+            bar: {
+                color: '#00FF00'
+            },
+            animationDuration: 200,
+            flipped: false
+        }
+        this.myHealthBar = new HealthBar(this.game, barConfig);
+        this.myHealthBar.setFixedToCamera(true);
+        this.currHealth = 100;
     },
 
     update: function update() {
@@ -69,10 +87,20 @@
             player.body.velocity.y = -200;
             jumpTimer = game.time.now + 750;
         }
+        this.playerHealth();
         //if enemy reached the end of level, go to next state
         //game.state.start("level2");
         //game.state.start("gameoverState");
     },
+
+    playerHealth: function playerHealth()
+    {
+
+        if (upKey.isDown) {
+            this.currHealth -= 1;
+            this.myHealthBar.setPercent(this.currHealth);
+        }
+    }
 
 
     //create: function create() { }

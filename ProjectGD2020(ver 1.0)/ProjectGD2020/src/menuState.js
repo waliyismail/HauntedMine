@@ -6,6 +6,6 @@
     },
     startButtonAction: function startButtonAction() {
         console.log("start button clicked!");
-        game.state.start("level3");
+        game.state.start("level1");
     }
 };
