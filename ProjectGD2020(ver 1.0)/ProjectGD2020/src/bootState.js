@@ -20,7 +20,7 @@ var bootState = {
     },
     create: function create() {
 
-        game.state.start('menu');
+        game.state.start('workshop');
     }
     //  create: function create() { }
     //create: function create() { }
