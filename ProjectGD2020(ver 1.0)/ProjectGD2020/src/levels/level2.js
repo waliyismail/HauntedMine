@@ -25,6 +25,11 @@
 
         game.camera.follow(player);
 
+        //sound effect
+        this.jmpsfx = game.add.audio('jumpsound');
+        this.deathsfx = game.add.audio('deathsfx');
+        this.stepsfx = game.add.audio('step');
+
         //enemy spawn
         ghost = game.add.group();
         ghost.enableBody = true;
