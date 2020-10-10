@@ -23,6 +23,13 @@
 
         game.camera.follow(player);
 
+        //test trigger
+        test = game.add.sprite(1312, 336, 'droid');
+        test.enableBody = true;
+        game.physics.enable(test, Phaser.Physics.ARCADE);
+        test.body.collideWorldBounds = true;
+        test.body.setSize(20, 32, 5, 16);
+
         //Controls movement
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
@@ -88,19 +95,27 @@
             jumpTimer = game.time.now + 750;
         }
         this.playerHealth();
+
+        //collision between player & trigger
+        game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
+
         //if enemy reached the end of level, go to next state
         //game.state.start("level2");
         //game.state.start("gameoverState");
     },
 
-    playerHealth: function playerHealth()
-    {
+    playerHealth: function playerHealth() {
 
         if (upKey.isDown) {
             this.currHealth -= 1;
             this.myHealthBar.setPercent(this.currHealth);
         }
-    }
+    },
+    //player reach end of map
+    playerReachBottom: function playerReachBottom(_player, _test) {
+        _test.kill();
+        game.state.start('level2');
+    },
 
 
     //create: function create() { }
