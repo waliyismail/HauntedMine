@@ -20,6 +20,9 @@ var bootState = {
         game.load.image('bulletRight', 'assets/movables/bulletRight.png', 32, 32);
         game.load.image('bulletLeft', 'assets/movables/bulletLeft.png', 32, 32);
 
+        //ore
+        game.load.image('ores', 'assets/movables/ores.png', 32, 32);
+
         game.load.audio('jumpsound', 'src/sounds/jump.mp3');
         game.load.audio('bgm', 'src/sounds/spookybgm.mp3');
         game.load.audio('deathsfx', 'src/sounds/death-sound.mp3');
