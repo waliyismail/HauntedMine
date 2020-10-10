@@ -93,6 +93,7 @@
         //test trigger
         test = game.add.sprite(1312, 336, 'droid');
         test.enableBody = true;
+        //test.visible = false;
         game.physics.enable(test, Phaser.Physics.ARCADE);
         test.body.collideWorldBounds = true;
         test.body.setSize(20, 32, 5, 16);
@@ -219,8 +220,12 @@
     },
 
     bulletEnemy: function bulletEnemy(_bullet, _ghost) {
-
-        this.enemyKilled();
+        console.log("enemy died");
+        console.log(_bullet);
+        console.log(_ghost);
+        _bullet.destroy();
+        _ghost.destroy();
+        //this.enemyKilled();
     },
 
     //player reach end of map
