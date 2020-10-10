@@ -17,7 +17,8 @@ var bootState = {
         game.load.image('startButton', 'startButton.png')
 
         //bullets
-        game.load.image('bulletRight', 'bulletRight.png');
+        game.load.image('bulletRight', 'assets/movables/bulletRight.png', 32, 32);
+        game.load.image('bulletLeft', 'assets/movables/bulletLeft.png', 32, 32);
 
         game.load.audio('jumpsound', 'src/sounds/jump.mp3');
         game.load.audio('bgm', 'src/sounds/spookybgm.mp3');
