@@ -33,7 +33,7 @@
         var facing = 'left';
 
         //test trigger
-        test = game.add.sprite(1312, 336, 'droid');
+        test = game.add.sprite(448, 366, 'droid');
         test.enableBody = true;
         game.physics.enable(test, Phaser.Physics.ARCADE);
         test.body.collideWorldBounds = true;
@@ -113,7 +113,7 @@
     //player reach end of map
     playerReachBottom: function playerReachBottom(_player, _test) {
         _test.kill();
-        game.state.start('level2');
+        game.state.start('level3');
     },
 
 
