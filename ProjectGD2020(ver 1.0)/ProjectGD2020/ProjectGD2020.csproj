@@ -27,6 +27,7 @@
     <Content Include="game.js" />
     <Content Include="gameState.js" />
     <Content Include="index.html" />
+    <Content Include="level.js" />
     <Content Include="level3.js" />
     <Content Include="level2.js" />
     <Content Include="menuState.js" />
