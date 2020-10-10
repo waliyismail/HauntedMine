@@ -24,7 +24,10 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="index.html" />
-    <Content Include="app1.js" />
+    <Content Include="level3.js" />
+    <Content Include="level2.js" />
+    <Content Include="origin.js" />
+    <Content Include="level1.js" />
     <Content Include="phaser.js" />
     <Content Include="phaser.min.js" />
     <Content Include="test.js" />

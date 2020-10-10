@@ -4,3 +4,9 @@ c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020
 c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.csprojResolveAssemblyReference.cache
 c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.dll
 c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.pdb
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\bin\ProjectGD2020.dll.config
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\bin\ProjectGD2020.dll
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\bin\ProjectGD2020.pdb
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\obj\Debug\ProjectGD2020.csprojResolveAssemblyReference.cache
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\obj\Debug\ProjectGD2020.dll
+C:\Users\kuros\Documents\GitHub\HauntedMine\ProjectGD2020(ver 1.0)\ProjectGD2020\obj\Debug\ProjectGD2020.pdb
