@@ -1,0 +1,6 @@
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\bin\ProjectGD2020.dll.config
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\bin\ProjectGD2020.dll
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\bin\ProjectGD2020.pdb
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.csprojResolveAssemblyReference.cache
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.dll
+c:\users\kuros\documents\visual studio 2015\Projects\ProjectGD2020\ProjectGD2020\obj\Debug\ProjectGD2020.pdb
