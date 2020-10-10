@@ -12,8 +12,14 @@ var bootState = {
 
         game.load.image('background', 'assets/maps/background.png');
         game.load.image('startButton', 'startButton.png')
+
+        game.load.audio('jumpsound', 'src/sounds/jump.mp3');
+        game.load.audio('bgm', 'src/sounds/spookybgm.mp3');
+        game.load.audio('deathsfx', 'src/sounds/death-sound.mp3');
+        game.load.audio('step', 'src/sounds/footsteps1.mp3');
     },
     create: function create() {
+
         game.state.start('menu');
     }
     //  create: function create() { }

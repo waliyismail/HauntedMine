@@ -23,6 +23,11 @@
 
         game.camera.follow(player);
 
+        //sound effect
+        this.jmpsfx = game.add.audio('jumpsound');
+        this.deathsfx = game.add.audio('deathsfx');
+        this.stepsfx = game.add.audio('step');
+
         //test trigger
         test = game.add.sprite(1312, 336, 'droid');
         test.enableBody = true;
@@ -55,6 +60,7 @@
         this.myHealthBar = new HealthBar(this.game, barConfig);
         this.myHealthBar.setFixedToCamera(true);
         this.currHealth = 100;
+        console.log(this.bgm);
     },
 
     update: function update() {
@@ -69,6 +75,7 @@
                 player.animations.play('left');
                 this.facing = 'left';
             }
+            //this.stepsfx.play();
         }
             //else if (cursors.right.isDown) {
         else if (rightKey.isDown) {
@@ -77,6 +84,7 @@
                 player.animations.play('right');
                 this.facing = 'right';
             }
+            //this.stepsfx.play();
         }
         else {
             if (this.facing != 'idle') {
@@ -89,8 +97,10 @@
                 }
                 this.facing = 'idle';
             }
+            //this.stepsfx.play();
         }
         if (jumpButton.isDown && player.body.onFloor() && game.time.now > jumpTimer) {
+            this.jmpsfx.play();
             player.body.velocity.y = -200;
             jumpTimer = game.time.now + 750;
         }
@@ -109,6 +119,12 @@
         if (upKey.isDown) {
             this.currHealth -= 1;
             this.myHealthBar.setPercent(this.currHealth);
+        }
+        if (this.currHealth == 0)
+        {
+            this.deathsfx.play();
+            // goto game over state
+            game.state.start('gameover');
         }
     },
     //player reach end of map
