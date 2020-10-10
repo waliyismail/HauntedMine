@@ -1,6 +1,5 @@
 ﻿var game = new Phaser.Game(800, 300, Phaser.CANVAS, 'phaser-example', {
-    preload: preload,
-    create: create, update: update, render: render
+    preload: preload, create: create, update: update, render: render
 });
 
 function preload() {
@@ -72,6 +71,9 @@ function create() {
     //Controls movement
     leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
     rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+    // Move to next scene after finished the level
+    //game.scene.transition({ target: 'Level2', duration: 2000 });
 }
 
 function update() {
