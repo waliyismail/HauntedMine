@@ -64,13 +64,44 @@
             }
             else { }
         }
+        //bullets
+        bulletsRight = game.add.group();
+        bulletsRight.enableBody = true;
+        bulletsRight.physicsBodyType = Phaser.Physics.ARCADE;
+        for (var i = 0; i < 20; i++) {
+            var br = bulletsRight.create(0, 0, 'bulletRight');
+            br.name = 'bulletRight' + i;
+            br.exists = false;
+            br.visible = false;
+            br.checkWorldBounds = true;
+            br.events.onOutOfBounds.add(this.resetBullet, this);
+            br.scale.setTo(0.5, 0.5);
+            br.body.allowGravity = false;
+        }
+
+        bulletsLeft = game.add.group();
+        bulletsLeft.enableBody = true;
+        bulletsLeft.physicsBodyType = Phaser.Physics.ARCADE;
+        for (var i = 0; i < 20; i++) {
+            var bl = bulletsLeft.create(0, 0, 'bulletLeft');
+            bl.name = 'bulletLeft' + i;
+            bl.exists = false;
+            bl.visible = false;
+            bl.checkWorldBounds = true;
+            bl.events.onOutOfBounds.add(this.resetBullet, this);
+            bl.scale.setTo(0.5, 0.5);
+            bl.body.allowGravity = false;
+        }
+
+        bulletTime = 0;
 
         //Controls movement
-        //upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+        upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+        shootKey = game.input.keyboard.addKey(Phaser.Keyboard.E);
         var facing = 'left';
 
         //test trigger
@@ -138,9 +169,14 @@
             player.body.velocity.y = -200;
             jumpTimer = game.time.now + 750;
         }
+        if (shootKey.isDown) {
+            this.fireBullet();
+        }
         this.playerHealth();
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
         game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
+        game.physics.arcade.overlap(bulletsRight, ghost, this.bulletEnemy, null, this);
+        game.physics.arcade.overlap(bulletsLeft, ghost, this.bulletEnemy, null, this);
 
     },
 
@@ -170,18 +206,60 @@
         }
     },
 
-    playerEnemy: function playerEnemy(_player, _ghost) {
-
-        this.playerHurt();
-    },
-
     //player reach end of map
     playerReachBottom: function playerReachBottom(_player, _test) {
         _test.kill();
         game.state.start('level3');
     },
 
+    playerEnemy: function playerEnemy(_player, _ghost) {
 
+        this.playerHurt();
+    },
+
+    bulletEnemy: function bulletEnemy(_bullet, _ghost) {
+        console.log("enemy died");
+        _bullet.kill();
+        _ghost.kill();
+        //this.enemyKilled();
+    },
+
+    fireBullet: function fireBullet() {
+        console.log("level 2 firing bullet");
+        if (game.time.now > bulletTime) {
+            if (player.frame >= 5) {
+                bullet = bulletsRight.getFirstExists(false);
+                if (bullet) {
+                    bullet.reset(player.x + 16, player.y + 16);
+                    bullet.body.velocity.x = 300;
+                    bulletTime = game.time.now + 150;
+                    bullet.lifespan = 500;
+                }
+            }
+            else if (player.frame < 5) {
+                bullet = bulletsLeft.getFirstExists(false);
+                if (bullet) {
+                    bullet.reset(player.x - 16, player.y + 16);
+                    bullet.body.velocity.x = -300;
+                    bulletTime = game.time.now + 150;
+                    bullet.lifespan = 500;
+                }
+            }
+            else { }
+
+        }
+    },
+
+    // Called if the bullet goes out of the screen
+    resetBullet: function resetBullet(_bullet) {
+        //_bullet.destroy();
+    },
+
+    // Called if the bullet hits one of the veg sprites
+    enemyKilled: function enemyKilled(_bullet, _ghost) {
+        this._bullet.kill();
+        this._ghost.kill();
+    },
 
     //create: function create() { }
 };

@@ -274,6 +274,12 @@
         }
     },
 
+    //player reach end of map
+    playerReachBottom: function playerReachBottom(_player, _test) {
+        _test.kill();
+        game.state.start('level2');
+    },
+
     playerEnemy: function playerEnemy(_player,_ghost) {
         
         this.playerHurt();
@@ -281,17 +287,9 @@
 
     bulletEnemy: function bulletEnemy(_bullet, _ghost) {
         console.log("enemy died");
-        console.log(_bullet);
-        console.log(_ghost);
-        _bullet.destroy();
-        _ghost.destroy();
+        _bullet.kill();
+        _ghost.kill();
         //this.enemyKilled();
-    },
-
-    //player reach end of map
-    playerReachBottom: function playerReachBottom(_player, _test) {
-        _test.kill();
-        game.state.start('level2');
     },
 
     fireBullet : function fireBullet () {
