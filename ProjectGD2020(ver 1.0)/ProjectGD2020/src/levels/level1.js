@@ -34,19 +34,23 @@
             {
                 var s = ghost.create(752, 80, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
                 s.scale.setTo(1.40, 1.25);
+                s.body.setSize(28, 32);
+                s.body.immovable = true;
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
             else if (i == 1) {
                 var s = ghost.create(1216, 224, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
                 s.scale.setTo(1.40, 1.25);
+                s.body.setSize(28, 32);
+                s.body.immovable = true;
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
             else { }
         }
+
+        game.physics.enable(ghost, Phaser.Physics.ARCADE);
 
         //ghost.animations.play('leftEnemy');
 
@@ -95,6 +99,7 @@
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
         game.physics.arcade.collide(ghost, layer);
+
         player.body.velocity.x = 0;
 
         //if (cursors.left.isDown) {
@@ -137,12 +142,11 @@
 
         //collision between player & trigger
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
+        game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
 
-        //if enemy reached the end of level, go to next state
-        //game.state.start("level2");
-        //game.state.start("gameoverState");
     },
 
+    //testing purpose
     playerHealth: function playerHealth() {
 
         if (upKey.isDown) {
@@ -156,6 +160,24 @@
             game.state.start('gameover');
         }
     },
+
+    playerHurt: function playerHurt() {
+
+            this.currHealth -= 1;
+            this.myHealthBar.setPercent(this.currHealth);
+
+        if (this.currHealth == 0) {
+            this.deathsfx.play();
+            // goto game over state
+            game.state.start('gameover');
+        }
+    },
+
+    playerEnemy: function playerEnemy(_player,_ghost) {
+        
+        this.playerHurt();
+    },
+
     //player reach end of map
     playerReachBottom: function playerReachBottom(_player, _test) {
         _test.kill();

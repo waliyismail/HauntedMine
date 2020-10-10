@@ -32,28 +32,28 @@
             if (i == 0) {
                 var s = ghost.create(480, 208, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
+                s.body.immovable = true;
                 s.scale.setTo(1.40, 1.25);
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
             else if (i == 1) {
                 var s = ghost.create(656, 112, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
+                s.body.immovable = true;
                 s.scale.setTo(1.40, 1.25);
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
             else if (i == 2) {
                 var s = ghost.create(848, 256, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
+                s.body.immovable = true;
                 s.scale.setTo(1.40, 1.25);
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
             else if (i == 3) {
                 var s = ghost.create(528, 304, 'ghost');
                 s.name = 'ghost' + i;
-                s.body.collideWorldBounds = true;
+                s.body.immovable = true;
                 s.scale.setTo(1.40, 1.25);
                 //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
             }
@@ -135,18 +135,41 @@
         }
         this.playerHealth();
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
-        //if enemy reached the end of level, go to next state
-        //game.state.start("level3");
-        //game.state.start("gameoverState");
+        game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
+
     },
 
+    //testing purpose
     playerHealth: function playerHealth() {
 
         if (upKey.isDown) {
             this.currHealth -= 1;
             this.myHealthBar.setPercent(this.currHealth);
         }
+        if (this.currHealth <= 0) {
+            this.deathsfx.play();
+            // goto game over state
+            game.state.start('gameover');
+        }
     },
+
+    playerHurt: function playerHurt() {
+
+        this.currHealth -= 1;
+        this.myHealthBar.setPercent(this.currHealth);
+
+        if (this.currHealth == 0) {
+            this.deathsfx.play();
+            // goto game over state
+            game.state.start('gameover');
+        }
+    },
+
+    playerEnemy: function playerEnemy(_player, _ghost) {
+
+        this.playerHurt();
+    },
+
     //player reach end of map
     playerReachBottom: function playerReachBottom(_player, _test) {
         _test.kill();
