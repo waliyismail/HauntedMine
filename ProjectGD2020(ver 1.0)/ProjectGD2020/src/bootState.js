@@ -10,6 +10,9 @@ var bootState = {
         game.load.spritesheet('dude', 'assets/movables/dude.png', 32, 48);
         game.load.spritesheet('droid', 'assets/movables/droid.png', 32, 32); //temp trigger
 
+        game.load.spritesheet('ghost', 'assets/movables/ghost.png', 32, 32);
+        //game.load.spritesheet('ghost', 'assets/movables/ghost2.png', 32, 32);
+
         game.load.image('background', 'assets/maps/background.png');
         game.load.image('startButton', 'startButton.png')
 

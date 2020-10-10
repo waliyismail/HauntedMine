@@ -21,8 +21,44 @@
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('turn', [4], 20, true);
         player.animations.add('right', [5, 6, 7, 8], 10, true);
+        player.scale.setTo(0.75, 0.75);
 
         game.camera.follow(player);
+
+        //enemy spawn
+        ghost = game.add.group();
+        ghost.enableBody = true;
+        for (var i = 0; i < 4; i++) {
+            if (i == 0) {
+                var s = ghost.create(480, 208, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 1) {
+                var s = ghost.create(656, 112, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 2) {
+                var s = ghost.create(848, 256, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 3) {
+                var s = ghost.create(528, 304, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else { }
+        }
 
         //Controls movement
         //upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
@@ -63,6 +99,7 @@
 
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
+        game.physics.arcade.collide(ghost, layer);
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {

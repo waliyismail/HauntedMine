@@ -7,6 +7,8 @@
 
         map = game.add.tilemap('level1');
         map.addTilesetImage('test');
+        //map.addTilesetImage('ghost');
+
         map.setCollision(1);
         layer = map.createLayer('Ground');
         layer.resizeWorld();
@@ -20,8 +22,33 @@
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('turn', [4], 20, true);
         player.animations.add('right', [5, 6, 7, 8], 10, true);
+        player.scale.setTo(0.75, 0.75);
 
         game.camera.follow(player);
+
+        //enemy spawn
+        ghost = game.add.group();
+        ghost.enableBody = true;
+        for (var i = 0; i < 2; i++) {
+            if (i == 0)
+            {
+                var s = ghost.create(752, 80, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 1) {
+                var s = ghost.create(1216, 224, 'ghost');
+                s.name = 'ghost' + i;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else { }
+        }
+
+        //ghost.animations.play('leftEnemy');
 
         //sound effect
         this.jmpsfx = game.add.audio('jumpsound');
@@ -67,7 +94,9 @@
 
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
+        game.physics.arcade.collide(ghost, layer);
         player.body.velocity.x = 0;
+
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {
             player.body.velocity.x = -150;

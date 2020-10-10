@@ -20,9 +20,66 @@
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('turn', [4], 20, true);
         player.animations.add('right', [5, 6, 7, 8], 10, true);
+        player.scale.setTo(0.75, 0.75);
 
         game.camera.follow(player);
-
+        
+        //enemy spawn
+        ghost = game.add.group();
+        ghost.enableBody = true;
+        for (var i = 0; i < 6; i++) {
+            if (i == 0) {
+                var s = ghost.create(1168, 80, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 1) {
+                var s = ghost.create(848, 352, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 2) {
+                var s = ghost.create(848, 464, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 3) {
+                var s = ghost.create(1040, 464, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 4) {
+                var s = ghost.create(1120, 464, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 5) {
+                var s = ghost.create(272, 384, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 6) {
+                var s = ghost.create(1216, 224, 'ghost');
+                s.name = 'ghost' + s;
+                s.body.collideWorldBounds = true;
+                s.scale.setTo(1.40, 1.25);
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else { }
+        }
+        
         //Controls movement
         //upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
@@ -61,6 +118,7 @@
 
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
+        game.physics.arcade.collide(ghost, layer);
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {
