@@ -18,46 +18,6 @@
         game.physics.enable(wDoor, Phaser.Physics.ARCADE);
         wDoor.scale.setTo(1.5, 1.5);
 
-        player = game.add.sprite(32, 32, 'dude');
-        game.physics.enable(player, Phaser.Physics.ARCADE);
-        player.body.bounce.y = 0.1;
-        player.body.collideWorldBounds = true;
-        player.body.setSize(20, 32, 5, 16);
-        player.animations.add('left', [0, 1, 2, 3], 10, true);
-        player.animations.add('turn', [4], 20, true);
-        player.animations.add('right', [5, 6, 7, 8], 10, true);
-        player.scale.setTo(0.75, 0.75);
-
-        game.camera.follow(player);
-
-        //enemy spawn
-        ghost = game.add.group();
-        ghost.enableBody = true;
-        for (var i = 0; i < 2; i++) {
-            if (i == 0)
-            {
-                var s = ghost.create(752, 80, 'ghost');
-                s.name = 'ghost' + i;
-                s.scale.setTo(1.40, 1.25);
-                s.body.setSize(28, 32);
-                s.body.immovable = true;
-                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
-            }
-            else if (i == 1) {
-                var s = ghost.create(1216, 224, 'ghost');
-                s.name = 'ghost' + i;
-                s.scale.setTo(1.40, 1.25);
-                s.body.setSize(28, 32);
-                s.body.immovable = true;
-                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
-            }
-            else { }
-        }
-
-        game.physics.enable(ghost, Phaser.Physics.ARCADE);
-
-        //ghost.animations.play('leftEnemy');
-
         //ores spawn
         ores = game.add.group();
         ores.enableBody = true;
@@ -115,6 +75,46 @@
         }
 
         game.physics.enable(ores, Phaser.Physics.ARCADE);
+
+        player = game.add.sprite(32, 32, 'dude');
+        game.physics.enable(player, Phaser.Physics.ARCADE);
+        player.body.bounce.y = 0.1;
+        player.body.collideWorldBounds = true;
+        player.body.setSize(20, 32, 5, 16);
+        player.animations.add('left', [0, 1, 2, 3], 10, true);
+        player.animations.add('turn', [4], 20, true);
+        player.animations.add('right', [5, 6, 7, 8], 10, true);
+        player.scale.setTo(0.75, 0.75);
+
+        game.camera.follow(player);
+
+        //enemy spawn
+        ghost = game.add.group();
+        ghost.enableBody = true;
+        for (var i = 0; i < 2; i++) {
+            if (i == 0)
+            {
+                var s = ghost.create(752, 80, 'ghost');
+                s.name = 'ghost' + i;
+                s.scale.setTo(1.40, 1.25);
+                s.body.setSize(28, 32);
+                s.body.immovable = true;
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else if (i == 1) {
+                var s = ghost.create(1216, 224, 'ghost');
+                s.name = 'ghost' + i;
+                s.scale.setTo(1.40, 1.25);
+                s.body.setSize(28, 32);
+                s.body.immovable = true;
+                //ghost.animations.add('leftEnemy', [6, 5, 1], 10, true);
+            }
+            else { }
+        }
+
+        game.physics.enable(ghost, Phaser.Physics.ARCADE);
+
+        //ghost.animations.play('leftEnemy');
 
         //bullets
         bulletsRight = game.add.group();

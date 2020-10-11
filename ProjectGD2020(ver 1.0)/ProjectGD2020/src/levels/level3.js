@@ -16,6 +16,92 @@
         game.physics.enable(wDoor, Phaser.Physics.ARCADE);
         wDoor.scale.setTo(1.5, 1.5);
 
+        //ores spawn
+        ores = game.add.group();
+        ores.enableBody = true;
+        for (var i = 0; i < 10; i++) {
+            if (i == 0) {
+                var o = ores.create(1360, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 1) {
+                var o = ores.create(1024, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 2) {
+                var o = ores.create(944, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 3) {
+                var o = ores.create(800, 368, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 4) {
+                var o = ores.create(944, 416, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 5) {
+                var o = ores.create(1152, 320, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 6) {
+                var o = ores.create(1184, 448, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 7) {
+                var o = ores.create(624, 480, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 8) {
+                var o = ores.create(496, 384, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 9) {
+                var o = ores.create(368, 432, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 10) {
+                var o = ores.create(144, 448, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else { }
+        }
+
+        game.physics.enable(ores, Phaser.Physics.ARCADE);
+
         player = game.add.sprite(1408, 32, 'dude');
         game.physics.enable(player, Phaser.Physics.ARCADE);
         player.body.bounce.y = 0.1;
@@ -118,92 +204,6 @@
             }
             else { }
         }
-        
-        //ores spawn
-        ores = game.add.group();
-        ores.enableBody = true;
-        for (var i = 0; i < 10; i++) {
-            if (i == 0) {
-                var o = ores.create(1360, 144, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 1) {
-                var o = ores.create(1024, 144, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 2) {
-                var o = ores.create(944, 144, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 3) {
-                var o = ores.create(800, 368, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 4) {
-                var o = ores.create(944, 416, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 5) {
-                var o = ores.create(1152, 320, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 6) {
-                var o = ores.create(1184, 448, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 7) {
-                var o = ores.create(624, 480, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 8) {
-                var o = ores.create(496, 384, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 9) {
-                var o = ores.create(368, 432, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else if (i == 10) {
-                var o = ores.create(144, 448, 'ores');
-                o.name = 'ores' + i;
-                o.scale.setTo(1, 1);
-                o.body.setSize(28, 32);
-                o.body.immovable = true;
-            }
-            else { }
-        }
-
-        game.physics.enable(ores, Phaser.Physics.ARCADE);
 
         //Controls movement
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
