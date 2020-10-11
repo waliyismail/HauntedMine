@@ -12,6 +12,9 @@
         layer.resizeWorld();
         game.physics.arcade.gravity.y = 500;
 
+        wDoor = game.add.sprite(928, 240, 'door');
+        game.physics.enable(wDoor, Phaser.Physics.ARCADE);
+        wDoor.scale.setTo(1.5, 1.5);
 
         player = game.add.sprite(16, 32, 'dude');
         game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -141,6 +144,7 @@
         bulletsLeft = game.add.group();
         bulletsLeft.enableBody = true;
         bulletsLeft.physicsBodyType = Phaser.Physics.ARCADE;
+
         for (var i = 0; i < 20; i++) {
             var bl = bulletsLeft.create(0, 0, 'bulletLeft');
             bl.name = 'bulletLeft' + i;
@@ -196,6 +200,7 @@
         game.physics.arcade.collide(player, layer);
         game.physics.arcade.collide(ghost, layer);
         game.physics.arcade.collide(ores, layer);
+        game.physics.arcade.collide(wDoor, layer);
 
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {

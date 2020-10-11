@@ -12,6 +12,10 @@
         layer.resizeWorld();
         game.physics.arcade.gravity.y = 500;
 
+        wDoor = game.add.sprite(1264, 272, 'door');
+        game.physics.enable(wDoor, Phaser.Physics.ARCADE);
+        wDoor.scale.setTo(1.5, 1.5);
+
         player = game.add.sprite(1408, 32, 'dude');
         game.physics.enable(player, Phaser.Physics.ARCADE);
         player.body.bounce.y = 0.1;
@@ -242,6 +246,7 @@
         game.physics.arcade.collide(player, layer);
         game.physics.arcade.collide(ghost, layer);
         game.physics.arcade.collide(ores, layer);
+        game.physics.arcade.collide(wDoor, layer);
 
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
