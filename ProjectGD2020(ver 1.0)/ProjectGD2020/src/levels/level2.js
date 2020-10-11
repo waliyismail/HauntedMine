@@ -64,6 +64,65 @@
             }
             else { }
         }
+
+        //ores spawn
+        ores = game.add.group();
+        ores.enableBody = true;
+        for (var i = 0; i < 7; i++) {
+            if (i == 0) {
+                var o = ores.create(208, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 1) {
+                var o = ores.create(544, 176, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 2) {
+                var o = ores.create(704, 112, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 3) {
+                var o = ores.create(752, 112, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 4) {
+                var o = ores.create(1008, 128, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 5) {
+                var o = ores.create(496, 304, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 6) {
+                var o = ores.create(416, 304, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else { }
+        }
+
+        game.physics.enable(ores, Phaser.Physics.ARCADE);
+
         //bullets
         bulletsRight = game.add.group();
         bulletsRight.enableBody = true;
@@ -136,6 +195,8 @@
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
         game.physics.arcade.collide(ghost, layer);
+        game.physics.arcade.collide(ores, layer);
+
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {
@@ -175,8 +236,12 @@
         this.playerHealth();
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
         game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
+
         game.physics.arcade.overlap(bulletsRight, ghost, this.bulletEnemy, null, this);
         game.physics.arcade.overlap(bulletsLeft, ghost, this.bulletEnemy, null, this);
+
+        game.physics.arcade.overlap(bulletsRight, ores, this.bulletOre, null, this);
+        game.physics.arcade.overlap(bulletsLeft, ores, this.bulletOre, null, this);
 
     },
 
@@ -222,6 +287,12 @@
         _bullet.kill();
         _ghost.kill();
         //this.enemyKilled();
+    },
+
+    bulletOre: function bulletOre(_bullet, _ore) {
+        console.log("enemy died");
+        _bullet.kill();
+        _ore.kill();
     },
 
     fireBullet: function fireBullet() {

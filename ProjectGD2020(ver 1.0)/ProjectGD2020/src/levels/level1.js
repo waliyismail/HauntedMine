@@ -242,8 +242,12 @@
         //collision between player & trigger
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
         game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
+
         game.physics.arcade.overlap(bulletsRight, ghost, this.bulletEnemy, null, this);
         game.physics.arcade.overlap(bulletsLeft, ghost, this.bulletEnemy, null, this);
+
+        game.physics.arcade.overlap(bulletsRight, ores, this.bulletOre, null, this);
+        game.physics.arcade.overlap(bulletsLeft, ores, this.bulletOre, null, this);
 
     },
 
@@ -290,6 +294,12 @@
         _bullet.kill();
         _ghost.kill();
         //this.enemyKilled();
+    },
+
+    bulletOre: function bulletOre(_bullet, _ore) {
+        console.log("enemy died");
+        _bullet.kill();
+        _ore.kill();
     },
 
     fireBullet : function fireBullet () {

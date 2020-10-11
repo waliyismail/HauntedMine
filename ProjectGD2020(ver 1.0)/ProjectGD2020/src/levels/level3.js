@@ -115,6 +115,92 @@
             else { }
         }
         
+        //ores spawn
+        ores = game.add.group();
+        ores.enableBody = true;
+        for (var i = 0; i < 10; i++) {
+            if (i == 0) {
+                var o = ores.create(1360, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 1) {
+                var o = ores.create(1024, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 2) {
+                var o = ores.create(944, 144, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 3) {
+                var o = ores.create(800, 368, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 4) {
+                var o = ores.create(944, 416, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 5) {
+                var o = ores.create(1152, 320, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 6) {
+                var o = ores.create(1184, 448, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 7) {
+                var o = ores.create(624, 480, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 8) {
+                var o = ores.create(496, 384, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 9) {
+                var o = ores.create(368, 432, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else if (i == 10) {
+                var o = ores.create(144, 448, 'ores');
+                o.name = 'ores' + i;
+                o.scale.setTo(1, 1);
+                o.body.setSize(28, 32);
+                o.body.immovable = true;
+            }
+            else { }
+        }
+
+        game.physics.enable(ores, Phaser.Physics.ARCADE);
+
         //Controls movement
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         //downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
@@ -155,6 +241,8 @@
         var jumpTimer = 0;
         game.physics.arcade.collide(player, layer);
         game.physics.arcade.collide(ghost, layer);
+        game.physics.arcade.collide(ores, layer);
+
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {
@@ -194,8 +282,12 @@
         this.playerHealth();
         game.physics.arcade.collide(player, test, this.playerReachBottom, null, this);
         game.physics.arcade.overlap(player, ghost, this.playerEnemy, null, this);
+
         game.physics.arcade.overlap(bulletsRight, ghost, this.bulletEnemy, null, this);
         game.physics.arcade.overlap(bulletsLeft, ghost, this.bulletEnemy, null, this);
+
+        game.physics.arcade.overlap(bulletsRight, ores, this.bulletOre, null, this);
+        game.physics.arcade.overlap(bulletsLeft, ores, this.bulletOre, null, this);
 
     },
 
@@ -235,11 +327,18 @@
     playerEnemy: function playerEnemy(_player, _ghost) {
 
         this.playerHurt();
-    }, bulletEnemy: function bulletEnemy(_bullet, _ghost) {
+    },
+    bulletEnemy: function bulletEnemy(_bullet, _ghost) {
         console.log("enemy died");
         _bullet.kill();
         _ghost.kill();
         //this.enemyKilled();
+    },
+
+    bulletOre: function bulletOre(_bullet, _ore) {
+        console.log("enemy died");
+        _bullet.kill();
+        _ore.kill();
     },
 
     fireBullet: function fireBullet() {
