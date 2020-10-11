@@ -149,7 +149,7 @@
         this.stepsfx = game.add.audio('step');
 
         //test trigger
-        test = game.add.sprite(1312, 336, 'droid');
+        test = game.add.sprite(1312, 336, 'trigger');
         test.enableBody = true;
         //test.visible = false;
         game.physics.enable(test, Phaser.Physics.ARCADE);

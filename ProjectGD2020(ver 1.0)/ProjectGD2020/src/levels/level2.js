@@ -164,7 +164,7 @@
         var facing = 'left';
 
         //test trigger
-        test = game.add.sprite(448, 366, 'droid');
+        test = game.add.sprite(448, 366, 'trigger');
         test.enableBody = true;
         game.physics.enable(test, Phaser.Physics.ARCADE);
         test.body.collideWorldBounds = true;

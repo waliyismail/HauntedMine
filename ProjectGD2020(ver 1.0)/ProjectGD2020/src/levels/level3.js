@@ -210,7 +210,7 @@
         shootKey = game.input.keyboard.addKey(Phaser.Keyboard.E);
         var facing = 'left';
         //test trigger
-        test = game.add.sprite(64, 480, 'droid');
+        test = game.add.sprite(64, 480, 'trigger');
         test.enableBody = true;
         game.physics.enable(test, Phaser.Physics.ARCADE);
         test.body.collideWorldBounds = true;
