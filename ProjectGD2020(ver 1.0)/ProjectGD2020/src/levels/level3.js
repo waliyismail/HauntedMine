@@ -238,6 +238,16 @@
         this.myHealthBar = new HealthBar(this.game, barConfig);
         this.myHealthBar.setFixedToCamera(true);
         this.currHealth = 100;
+
+        //text
+        scoreText = game.add.text(48, 32, 'Score: 0', {
+            font: "16px Arial", fill: "#ffffff",
+            align: "left"
+        });
+        scoreText.visible = true;
+        scoreText.fixedToCamera = true;
+
+        score = 0;
     },
 
     update: function update() {
@@ -337,6 +347,8 @@
         console.log("enemy died");
         _bullet.kill();
         _ghost.kill();
+        score = score + 2;
+        scoreText.text = 'Score: ' + score;
         //this.enemyKilled();
     },
 
@@ -344,6 +356,8 @@
         console.log("enemy died");
         _bullet.kill();
         _ore.kill();
+        score = score + 1;
+        scoreText.text = 'Score: ' + score;
     },
 
     fireBullet: function fireBullet() {

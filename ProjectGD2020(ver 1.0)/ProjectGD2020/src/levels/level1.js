@@ -17,6 +17,8 @@
         wDoor = game.add.sprite(544, 64, 'door');
         game.physics.enable(wDoor, Phaser.Physics.ARCADE);
         wDoor.scale.setTo(1.5, 1.5);
+        wDoor.enableBody = true;
+        wDoor.body.immovable = true;
 
         //ores spawn
         ores = game.add.group();
@@ -126,7 +128,7 @@
             br.exists = false;
             br.visible = false;
             br.checkWorldBounds = true;
-            br.events.onOutOfBounds.add(this.resetBullet, this);
+            //br.events.onOutOfBounds.add(this.resetBullet, this);
             br.scale.setTo(0.5, 0.5);
             br.body.allowGravity = false;
         }
@@ -140,7 +142,7 @@
             bl.exists = false;
             bl.visible = false;
             bl.checkWorldBounds = true;
-            bl.events.onOutOfBounds.add(this.resetBullet, this);
+            //bl.events.onOutOfBounds.add(this.resetBullet, this);
             bl.scale.setTo(0.5, 0.5);
             bl.body.allowGravity = false;
         }
@@ -188,6 +190,16 @@
         this.myHealthBar.setFixedToCamera(true);
         this.currHealth = 100;
         console.log(this.bgm);
+        
+        //text
+        scoreText = game.add.text(48, 32, 'Score: 0', {
+            font: "16px Arial", fill: "#ffffff",
+            align: "left"
+        });
+        scoreText.visible = true;
+        scoreText.fixedToCamera = true;
+
+        score = 0;
     },
 
     update: function update() {
@@ -289,22 +301,21 @@
         game.state.start('level2');
     },
 
-    playerEnemy: function playerEnemy(_player,_ghost) {
-        
-        this.playerHurt();
-    },
-
     bulletEnemy: function bulletEnemy(_bullet, _ghost) {
         console.log("enemy died");
         _bullet.kill();
         _ghost.kill();
+        score = score + 2;
+        scoreText.text = 'Score: ' + score;
         //this.enemyKilled();
     },
 
     bulletOre: function bulletOre(_bullet, _ore) {
-        console.log("enemy died");
+        console.log("ore mined");
         _bullet.kill();
         _ore.kill();
+        score = score + 1;
+        scoreText.text = 'Score: ' + score;
     },
 
     fireBullet : function fireBullet () {
@@ -333,16 +344,4 @@
 
         }
     },
-
-// Called if the bullet goes out of the screen
-    resetBullet : function resetBullet (_bullet) {
-        //_bullet.destroy();
-    },
-
-// Called if the bullet hits one of the veg sprites
-    enemyKilled : function enemyKilled (_bullet, _ghost) {
-    this._bullet.kill();
-    this._ghost.kill();
-    },
-
 };
