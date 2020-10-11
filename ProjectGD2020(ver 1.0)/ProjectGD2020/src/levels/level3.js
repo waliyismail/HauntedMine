@@ -128,7 +128,6 @@
             br.exists = false;
             br.visible = false;
             br.checkWorldBounds = true;
-            br.events.onOutOfBounds.add(this.resetBullet, this);
             br.scale.setTo(0.5, 0.5);
             br.body.allowGravity = false;
         }
@@ -142,7 +141,6 @@
             bl.exists = false;
             bl.visible = false;
             bl.checkWorldBounds = true;
-            bl.events.onOutOfBounds.add(this.resetBullet, this);
             bl.scale.setTo(0.5, 0.5);
             bl.body.allowGravity = false;
         }
@@ -248,6 +246,13 @@
         scoreText.fixedToCamera = true;
 
         score = 0;
+
+        doorText = game.add.text(48, 32, 'Look, we aint got no free money here', {
+            font: "16px Arial", fill: "#ffffff",
+            align: "left"
+        });
+        doorText.visible = false;
+        doorint = 0;
     },
 
     update: function update() {
@@ -257,6 +262,9 @@
         game.physics.arcade.collide(ghost, layer);
         game.physics.arcade.collide(ores, layer);
         game.physics.arcade.collide(wDoor, layer);
+
+        doorText.x = wDoor.position.x - 160;
+        doorText.y = wDoor.position.y - 48;
 
         player.body.velocity.x = 0;
         //if (cursors.left.isDown) {
@@ -304,6 +312,9 @@
         game.physics.arcade.overlap(bulletsRight, ores, this.bulletOre, null, this);
         game.physics.arcade.overlap(bulletsLeft, ores, this.bulletOre, null, this);
 
+        game.physics.arcade.overlap(bulletsRight, wDoor, this.knockknock, null, this);
+        game.physics.arcade.overlap(bulletsLeft, wDoor, this.knockknock, null, this);
+
     },
 
     //testing purpose
@@ -339,10 +350,12 @@
         //stop sound
         game.state.start('boot');
     },
+
     playerEnemy: function playerEnemy(_player, _ghost) {
 
         this.playerHurt();
     },
+
     bulletEnemy: function bulletEnemy(_bullet, _ghost) {
         console.log("enemy died");
         _bullet.kill();
@@ -358,6 +371,33 @@
         _ore.kill();
         score = score + 1;
         scoreText.text = 'Score: ' + score;
+    },
+
+    knockknock: function knockknock(_door, _bullet) {
+        console.log("knock knock");
+        _bullet.kill();
+
+        if (doorint == 0) {
+            doorint++;
+        }
+        else if (doorint == 1) {
+            doorint++;
+            doorText.text = 'Shoo shoo'
+        }
+        else if (doorint == 2) {
+            doorint++;
+            doorText.text = 'We wont give you any even if you beg'
+        }
+        else if (doorint == 3) {
+            doorint++;
+            doorText.text = 'The dev are too lazy to make\n the workshop anyway'
+        }
+        else {
+            doorint++;
+            doorText.text = '$#&^%(&*^)*!'
+        }
+
+        doorText.visible = true;
     },
 
     fireBullet: function fireBullet() {
@@ -385,18 +425,4 @@
 
         }
     },
-
-    // Called if the bullet goes out of the screen
-    resetBullet: function resetBullet(_bullet) {
-        //_bullet.destroy();
-    },
-
-    // Called if the bullet hits one of the veg sprites
-    enemyKilled: function enemyKilled(_bullet, _ghost) {
-        this._bullet.kill();
-        this._ghost.kill();
-    },
-
-
-    //create: function create() { }
 };

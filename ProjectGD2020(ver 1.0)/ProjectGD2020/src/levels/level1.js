@@ -128,7 +128,6 @@
             br.exists = false;
             br.visible = false;
             br.checkWorldBounds = true;
-            //br.events.onOutOfBounds.add(this.resetBullet, this);
             br.scale.setTo(0.5, 0.5);
             br.body.allowGravity = false;
         }
@@ -142,7 +141,6 @@
             bl.exists = false;
             bl.visible = false;
             bl.checkWorldBounds = true;
-            //bl.events.onOutOfBounds.add(this.resetBullet, this);
             bl.scale.setTo(0.5, 0.5);
             bl.body.allowGravity = false;
         }
@@ -200,6 +198,13 @@
         scoreText.fixedToCamera = true;
 
         score = 0;
+
+        doorText = game.add.text(48, 32, 'Under construction!', {
+            font: "16px Arial", fill: "#ffffff",
+            align: "left"
+        });
+        doorText.visible = false;
+        doorint = 0;
     },
 
     update: function update() {
@@ -211,6 +216,9 @@
         game.physics.arcade.collide(wDoor, layer);
 
         player.body.velocity.x = 0;
+
+        doorText.x = wDoor.position.x;
+        doorText.y = wDoor.position.y - 48;
 
         //if (cursors.left.isDown) {
         if (leftKey.isDown) {
@@ -266,6 +274,9 @@
         game.physics.arcade.overlap(bulletsRight, ores, this.bulletOre, null, this);
         game.physics.arcade.overlap(bulletsLeft, ores, this.bulletOre, null, this);
 
+        game.physics.arcade.overlap(bulletsRight, wDoor, this.knockknock, null, this);
+        game.physics.arcade.overlap(bulletsLeft, wDoor, this.knockknock, null, this);
+
     },
 
     //testing purpose
@@ -295,6 +306,11 @@
         }
     },
 
+    playerEnemy: function playerEnemy(_player, _ghost) {
+
+        this.playerHurt();
+    },
+
     //player reach end of map
     playerReachBottom: function playerReachBottom(_player, _test) {
         _test.kill();
@@ -316,6 +332,34 @@
         _ore.kill();
         score = score + 1;
         scoreText.text = 'Score: ' + score;
+    },
+
+    knockknock: function knockknock(_door, _bullet) {
+        console.log("knock knock");
+        _bullet.kill();
+
+        if (doorint == 0) {
+            doorint++;
+        }
+        else if (doorint == 1)
+        {
+            doorint++;
+            doorText.text = 'What are you still doing here?'
+        }
+        else if (doorint == 2) {
+            doorint++;
+            doorText.text = 'Cant you read?'
+        }
+        else if (doorint == 3) {
+            doorint++;
+            doorText.text = 'No one is here!'
+        }
+        else {
+            doorint++;
+            doorText.text = '$#&^%(&*^)*!'
+        }
+
+        doorText.visible = true;
     },
 
     fireBullet : function fireBullet () {
